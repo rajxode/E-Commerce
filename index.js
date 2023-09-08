@@ -11,6 +11,9 @@ const YAML = require('yamljs')
 const swaggerDocument = YAML.load('./swagger.yaml')
 
 app.use(express.json());
+app.use(express.urlencoded({
+    extended:true
+}));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // setting up routes

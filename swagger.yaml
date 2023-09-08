@@ -96,16 +96,14 @@ paths:
                 quantity:
                   type: number
       responses:
-        200:
+        201:
         # return the entered object
-          description: Success, OK
+          description: Success, new product added
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  id: 
-                    type: number
                   name:
                     type: string
                   quantity:
