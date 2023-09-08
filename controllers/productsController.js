@@ -20,3 +20,13 @@ const products = [
 module.exports.products = (req,res) => {
     res.json(products);
 }
+
+module.exports.create = (req,res) => {
+    console.log(req.body);
+    const product = {
+        id:products.length,
+        name:req.body.name,
+        quantity:req.body.quantity
+    }
+    res.json(req.body);
+}

@@ -40,3 +40,78 @@ paths:
           description: Bad request
         500:
           description: Internal Server Error
+  
+  /products:
+    get:
+    # grouping the paths
+      tags:
+        - Product List
+      summary: return list of all the products
+      responses:
+        200:
+          description: Success, OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                    name:
+                      type: string
+                    quantity:
+                      type: number
+        400:
+          description: Bad request
+        500:
+          description: Internal Server Error
+  
+  /products/create:
+    # request type is post
+    post:
+      tags:
+        - Create
+      summary: add a new product to the database
+      # type of data taken
+      consumes:
+        - application/json
+      # type of output produced
+      produces:
+        - application/json
+      # params passed to add new course
+      requestBody:
+        # all values are required
+        required: true
+        # content 
+        content:
+          application/json:
+            schema:
+              # takes an object
+              type: object
+              properties:
+                name:
+                  type: string
+                quantity:
+                  type: number
+      responses:
+        200:
+        # return the entered object
+          description: Success, OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: 
+                    type: number
+                  name:
+                    type: string
+                  quantity:
+                    type: number
+        400:
+          description: Bad request
+        500:
+          description: Internal Server Error
+    
