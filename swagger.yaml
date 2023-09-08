@@ -1,0 +1,42 @@
+openapi: 3.0.0
+info: # info about the project
+  title: E-Commerce API
+  description: return products, create, update and delete products
+  version: 1.0.0
+
+servers:
+  # server url
+  - url: "http://localhost:1000/" 
+    description: for local host server
+
+# for auth
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: token
+    BearerAuth:
+      type: http
+      scheme: bearer
+
+# routes
+paths:
+  /:
+    get:
+    # grouping the paths
+      tags:
+        - Greetings
+      summary: return a greeting message
+      responses:
+        200:
+          description: Success, OK
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "greetingString"
+        400:
+          description: Bad request
+        500:
+          description: Internal Server Error
