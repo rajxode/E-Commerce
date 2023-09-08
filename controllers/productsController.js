@@ -39,7 +39,7 @@ module.exports.delete = (req,res) => {
     if(index === -1 ){
         res.send('not found');
     }
-    products.slice(index,1);
+    products.splice(index,1);
     res.send({
         "success":true,
         "message":"product deleted"

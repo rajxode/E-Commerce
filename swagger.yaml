@@ -58,7 +58,7 @@ paths:
                   type: object
                   properties:
                     id:
-                      type: number
+                      type: string
                     name:
                       type: string
                     quantity:
@@ -113,3 +113,31 @@ paths:
         500:
           description: Internal Server Error
     
+  /products/delete/{id}:
+    delete:
+      tags:
+        - Delete
+      summary: delete a product from list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          default: 1
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success, OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+        400:
+          description: Bad request
+        500:
+          description: Internal Server Error
