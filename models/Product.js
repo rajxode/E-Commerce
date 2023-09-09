@@ -4,19 +4,17 @@ const mongoose = require('mongoose');
 
 // creating schema for storing user's data
 const productSchema = new mongoose.Schema({
-    // name of user
-    id:{
-        type: String,
-        unique: true,
+    _id:{
+        type:String,
     },
-    name:{
+    name: {
         type: String,
-        default: null,
-    },
-    // email address
+        required: true,
+        index: true,
+    }
+    ,
     quantity:{
-        type: Number,
-        unique:null,
+        type: String,
     },
 });
 

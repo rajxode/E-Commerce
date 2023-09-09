@@ -1,47 +1,72 @@
 
-const products = [
-    {
-        id:"1",
-        name:"laptop",
-        quantity:22
-    },
-    { 
-        id:"2",
-        name:"bags",
-        quantity:12,
-    },
-    {
-        id:"3",
-        name:"mobile",
-        quantity:11
-    },
-]
+const Product = require('../models/Product');
+const Counter = require('../models/Counter');
 
-module.exports.products = (req,res) => {
-    res.json(products);
-}
-
-module.exports.create = (req,res) => {
-    const product = {
-        id:(products.length + 1).toString(),
-        name:req.body.name,
-        quantity:req.body.quantity
-    }
-
-    products.push(product);
-    res.json(req.body);
+async function getNextSequenceValue(sequenceName) {
+    const counter = await Counter.findOneAndUpdate(
+        { _id: sequenceName },
+        { $inc: { sequence_value: 1 } },
+        { new: true, upsert: true }
+    );
+    return counter.sequence_value;
 }
 
 
-module.exports.delete = (req,res) => {
-    // const product = products.find((item) => item.id === req.params.id );
-    const index = products.findIndex((item) => item.id === req.params.id );
-    if(index === -1 ){
-        res.send('not found');
+module.exports.products = async (req,res) => {
+    try {
+        const products = await Product.find({});
+        res.json(products);
+    } catch (error) {
+        console.log(error);
     }
-    products.splice(index,1);
-    res.send({
-        "success":true,
-        "message":"product deleted"
-    });
+}
+
+
+
+module.exports.create = async (req,res) => {
+    try {
+        const { name , quantity } = req.body;
+        const productId = await getNextSequenceValue('counter');
+
+        const product = await Product.create({
+            _id:productId,
+            name,
+            quantity
+        });
+        await product.save();
+        res.status(201).json(product);   
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+module.exports.delete = async (req,res) => {
+    try {
+        await Product.deleteOne({ _id: req.params.id });
+        res.send({
+            "success":true,
+            "message":"product deleted"
+        });    
+    } catch (error) {
+        console.log(error);
+    }
+    
+}
+
+
+module.exports.update = async (req,res) => {
+    try {
+        const productId = req.params.id;
+        const quantity = req.query.number;
+        const product = await Product.findOneAndUpdate(
+            { _id: productId },
+            { quantity  },
+            { new:true }
+        );
+        res.json(product);
+
+    } catch (error) {
+        console.log(error);
+    }
 }

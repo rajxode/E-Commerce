@@ -94,7 +94,7 @@ paths:
                 name:
                   type: string
                 quantity:
-                  type: number
+                  type: string
       responses:
         201:
         # return the entered object
@@ -107,7 +107,7 @@ paths:
                   name:
                     type: string
                   quantity:
-                    type: number
+                    type: string
         400:
           description: Bad request
         500:

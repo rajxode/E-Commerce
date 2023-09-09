@@ -3,8 +3,10 @@ const express = require('express');
 
 const router = express.Router();
 
-const paramsController = require('../controllers/deleteAndUpdateController');
+// const paramsController = require('../controllers/deleteAndUpdateController');
+const productController = require('../controllers/productsController');
 
-router.delete('/',paramsController.delete);
+router.delete('/',productController.delete);
+router.post('/update_quantity/',productController.update);
 
 module.exports = router;
