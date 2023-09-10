@@ -1,14 +1,19 @@
+
+// import the mongoose
 const mongoose = require('mongoose');
 
 // Define the schema for the counter
 const counterSchema = new mongoose.Schema({
-
+    // id of document
     _id:{ 
         type: String,
+        // giving default value of id
         default: 'counter'
-    }, // Sequence name (e.g., 'product_id')
-    sequence_value: {
-        type: Number, // The current sequence value
+    }, 
+    // The current sequence value 
+    count: {
+        type: Number, 
+        // initial value of count is 0
         default:0
     }
 });

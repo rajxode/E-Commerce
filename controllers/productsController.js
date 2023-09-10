@@ -6,16 +6,16 @@ const Product = require('../models/Product');
 const Counter = require('../models/Counter');
 
 // increment the value of counter when new product is created
-async function getNextSequenceValue(sequenceName) {
+async function getNextSequenceValue(id) {
     // update the value of counter 
     const counter = await Counter.findOneAndUpdate(
-        { _id: sequenceName },
+        { _id: id },
         // increment the value of counter by 1
-        { $inc: { sequence_value: 1 } },
+        { $inc: { count: 1 } },
         { new: true, upsert: true }
     );
     // return the value of counter
-    return counter.sequence_value;
+    return counter.count;
 }
 
 
