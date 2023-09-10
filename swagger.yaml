@@ -72,7 +72,7 @@ paths:
     # request type is post
     post:
       tags:
-        - Create
+        - Add Product
       summary: add a new product to the database
       # type of data taken
       consumes:
@@ -113,10 +113,10 @@ paths:
         500:
           description: Internal Server Error
     
-  /products/delete/{id}:
+  /products/{id}:
     delete:
       tags:
-        - Delete
+        - Delete Product
       summary: delete a product from list
       parameters:
         - name: id
@@ -136,6 +136,42 @@ paths:
                   success:
                     type: boolean
                   message:
+                    type: string
+        400:
+          description: Bad request
+        500:
+          description: Internal Server Error
+
+  /products/{id}/update_quantity/?number:
+    # request type is post
+    post:
+      tags:
+        - Update Product
+      summary: Update quantity of a product inside the database
+      parameters:
+        - name: id
+          in: path
+          required: true
+          default: 1
+          schema:
+            type: string
+        - name: number
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        201:
+        # return the entered object
+          description: Success, new product added
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  quantity:
                     type: string
         400:
           description: Bad request
