@@ -2,13 +2,10 @@
 // import mongoose
 const mongoose = require('mongoose');
 
-// mongoDB url stored in env variable
-const { MONGODB_URL } = process.env;
-
 
 // connect to database
 exports.connect = () => {
-    mongoose.connect(MONGODB_URL, {
+    mongoose.connect(process.env.MONGODB_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
@@ -18,7 +15,7 @@ exports.connect = () => {
     )
     .catch((error) => {
         // if there is some error
-        conosle.log('database connection is failed');
+        console.log('database connection is failed');
         console.log(error);
         process.exit(1);
     })
