@@ -6,7 +6,7 @@ info: # info about the project
 
 servers:
   # server url
-  - url: "http://localhost:1000/" 
+  - url: "https://e-commerce-api-production.up.railway.app/" 
     description: for local host server
 
 # for auth
