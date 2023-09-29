@@ -6,19 +6,7 @@ info: # info about the project
 
 servers:
   # server url
-  - url: "https://e-commerce-api-production.up.railway.app/" 
-    description: for local host server
-
-# for auth
-components:
-  securitySchemes:
-    cookieAuth:
-      type: apiKey
-      in: cookie
-      name: token
-    BearerAuth:
-      type: http
-      scheme: bearer
+  - url: "https://e-commerce-api-production.up.railway.app/"
 
 # routes
 paths:
