@@ -1,6 +1,11 @@
 # E-Commerce-API
   This is an E-commerce API made using Expressjs, MongoDB and Swagger-Docs. User can perform multiple operation using this project such as see product list, add a new product, remove any product and update product quantity.
 
+Hosted links:
+  - Homepage -> <a href="https://e-commerce-api-production.up.railway.app/">E-commerec-API</a>
+  - API-DOCS -> [E-com-api-docs](https://e-commerce-api-production.up.railway.app/api-docs/)
+
+
 # Screenshots:
   ![swag](https://github.com/rajxode/E-Commerce-API/assets/120395470/171ce463-c685-4d85-86df-4ec130319ee8)
   ![swag-2](https://github.com/rajxode/E-Commerce-API/assets/120395470/ab9184c2-a7fd-469e-a38b-dee39e09e1f5)
